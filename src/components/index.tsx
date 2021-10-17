@@ -6,3 +6,4 @@ export * from './PageHeader/PageHeader';
 export * from './LoadingSpinner/LoadingSpinner';
 export * from './HorizontalBarChart/HorizontalBarChart';
 export * from './LineChart/LineChart';
+export * from './MainPage/MainPage';
