@@ -67,6 +67,11 @@ describe('mappers', () => {
 			const countryHistory = convertToCountryHistory(apiCountryHistory);
 
 			expect(countryHistory.getName).toBe(apiCountryHistory.country);
+			expect(countryHistory.getHistory).toHaveLength(10);
+			expect(countryHistory.getHistory[0].cases).toBe(1655406);
+			expect(countryHistory.getHistory[0].deaths).toBe(28165);
+			expect(countryHistory.getHistory[9].cases).toBe(1684435);
+			expect(countryHistory.getHistory[9].deaths).toBe(28521);
 		});
 	});
 });
