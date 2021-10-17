@@ -8,3 +8,4 @@ export * from './HorizontalBarChart/HorizontalBarChart';
 export * from './LineChart/LineChart';
 export * from './MainPage/MainPage';
 export * from './Button/Button';
+export * from './NavButtonsGroup/NavButtonsGroup';
