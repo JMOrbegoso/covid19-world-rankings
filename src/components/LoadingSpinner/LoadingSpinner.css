@@ -1,0 +1,14 @@
+.loading-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.loading-spinner {
+	width: 96px;
+	height: 96px;
+	animation: spin 1s linear infinite;
+	border-left-width: 2px;
+	border-color: steelblue;
+	border-radius: 9999px;
+}
