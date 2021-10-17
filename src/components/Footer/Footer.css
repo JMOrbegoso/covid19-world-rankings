@@ -1,0 +1,27 @@
+footer {
+	padding: 12px;
+	text-align: center;
+	background-color: slategray;
+	color: white;
+}
+
+footer .api-credits {
+	font-size: small;
+}
+
+footer .author-info {
+	margin-top: 6px;
+	font-size: large;
+	font-weight: bold;
+}
+
+footer .author-web {
+	margin-top: 2px;
+	font-size: small;
+	text-decoration: underline;
+}
+
+footer .author-web:hover {
+	text-decoration: none;
+	color: whitesmoke;
+}
