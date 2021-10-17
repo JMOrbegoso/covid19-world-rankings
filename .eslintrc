@@ -7,6 +7,10 @@
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:react/recommended",
+		"plugin:jsx-a11y/recommended",
+		"plugin:react-hooks/recommended",
+		"plugin:jest/recommended",
+		"plugin:jest/style",
 		"plugin:prettier/recommended"
 	],
 	"parser": "@typescript-eslint/parser",
@@ -19,7 +23,7 @@
 			"version": "detect"
 		}
 	},
-	"plugins": ["@typescript-eslint"],
+	"plugins": ["@typescript-eslint", "import"],
 	"rules": {
 		"@typescript-eslint/no-unused-vars": ["warn"],
 		"@typescript-eslint/explicit-function-return-type": ["warn"],
