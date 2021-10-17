@@ -13,3 +13,4 @@ export * from './LoadingPage/LoadingPage';
 export * from './ContinentsPage/ContinentsPage';
 export * from './ContinentPage/ContinentPage';
 export * from './CountriesPage/CountriesPage';
+export * from './CountryPage/CountryPage';
