@@ -11,3 +11,4 @@ export * from './Button/Button';
 export * from './NavButtonsGroup/NavButtonsGroup';
 export * from './LoadingPage/LoadingPage';
 export * from './ContinentsPage/ContinentsPage';
+export * from './ContinentPage/ContinentPage';
