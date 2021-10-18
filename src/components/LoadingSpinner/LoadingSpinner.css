@@ -5,10 +5,25 @@
 }
 
 .loading-spinner {
-	width: 96px;
-	height: 96px;
-	animation: spin 1s linear infinite;
-	border-left-width: 2px;
-	border-color: steelblue;
-	border-radius: 9999px;
+	width: 128px;
+	height: 128px;
+
+	border: 12px solid whitesmoke;
+	border-radius: 50%;
+	border-top: 12px solid steelblue;
+	border-bottom: 12px solid steelblue;
+
+	animation-name: spin;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
