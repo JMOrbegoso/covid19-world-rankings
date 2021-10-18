@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '..';
 import './Hero.css';
 
 export function Hero(): JSX.Element {
@@ -13,9 +14,13 @@ export function Hero(): JSX.Element {
 					Compare the countries status about the COVID-19
 				</h3>
 
-				<div className="hero-button">
-					<a href="/continents">Continents</a>
-					<a href="/countries">Countries</a>
+				<div className="hero-buttons">
+					<a href="/continents">
+						<Button text="Continents" />
+					</a>
+					<a href="/countries">
+						<Button text="Countries" />
+					</a>
 				</div>
 			</div>
 		</section>
