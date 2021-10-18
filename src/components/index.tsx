@@ -14,3 +14,4 @@ export * from './ContinentsPage/ContinentsPage';
 export * from './ContinentPage/ContinentPage';
 export * from './CountriesPage/CountriesPage';
 export * from './CountryPage/CountryPage';
+export * from './NavBar/NavBar';
