@@ -31,29 +31,13 @@
 	font-weight: 600;
 }
 
-.hero-button {
+.hero-buttons {
 	margin-top: 18px;
 }
 
-.hero-button a {
-	margin-left: 12px;
-	margin-right: 12px;
-
-	padding-top: 12px;
-	padding-bottom: 12px;
-	padding-left: 18px;
-	padding-right: 18px;
-
-	font-weight: bold;
-	color: white;
-	background-color: steelblue;
-	font-size: 16px;
-	border-radius: 6px;
-}
-
-.hero-button a:hover {
-	background-color: gray;
-	color: black;
+.hero-buttons a {
+	margin-left: 2px;
+	margin-right: 2px;
 }
 
 @media (min-width: 640px) {
@@ -69,8 +53,9 @@
 		font-size: 28px;
 	}
 
-	.hero-button a {
-		font-size: 18px;
+	.hero-buttons a {
+		margin-left: 8px;
+		margin-right: 8px;
 	}
 }
 
@@ -86,10 +71,6 @@
 	.hero-description {
 		font-size: 32px;
 	}
-
-	.hero-button a {
-		font-size: 20px;
-	}
 }
 
 @media (min-width: 1024px) {
@@ -103,9 +84,5 @@
 
 	.hero-description {
 		font-size: 36px;
-	}
-
-	.hero-button a {
-		font-size: 22px;
 	}
 }
