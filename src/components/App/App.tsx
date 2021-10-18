@@ -1,24 +1,46 @@
 import React from 'react';
-import logo from '../../logo.svg';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {
+	Footer,
+	MainPage,
+	NavBar,
+	ContinentsPage,
+	ContinentPage,
+	CountriesPage,
+	CountryPage,
+} from '..';
 import './App.css';
 
 export function App(): JSX.Element {
 	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.tsx</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-				</a>
-			</header>
-		</div>
+		<BrowserRouter>
+			<div className="app">
+				<div className="app-navbar">
+					<NavBar />
+				</div>
+
+				<div className="app-content">
+					<Switch>
+						<Route exact path="/" component={MainPage} />
+						<Route exact path="/continents/" component={ContinentsPage} />
+						<Route
+							exact
+							path="/continents/:continentName"
+							component={ContinentPage}
+						/>
+						<Route exact path="/countries/" component={CountriesPage} />
+						<Route
+							exact
+							path="/countries/:countryName"
+							component={CountryPage}
+						/>
+					</Switch>
+				</div>
+
+				<div className="app-footer">
+					<Footer />
+				</div>
+			</div>
+		</BrowserRouter>
 	);
 }
