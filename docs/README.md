@@ -1,6 +1,22 @@
-# Getting Started with Create React App
+# COVID-19 World Rankings 🌎
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a React webpage to compare the countries status about the COVID-19 from the information of Worldometers and Johns Hopkins University using tables and charts.
+
+[![Landing page](https://raw.githubusercontent.com/JMOrbegoso/covid19-world-rankings/main/docs/img/main.webp)](https://covid19rankings.jmorbegoso.com)
+
+## Technologies
+
+- React
+- TypeScript
+- HTML
+- CSS
+- Prettier
+- ESLint
+- Husky
+- React Helmet
+- React Router
+- Axios
+- Chart.js
 
 ## Available Scripts
 
@@ -39,8 +55,14 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### `yarn format`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Format the code on the src folder using Prettier.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `yarn lint`
+
+Lint the code on the src folder using ESLint.
+
+## Live page
+
+Visit the live page at [covid19rankings.jmorbegoso.com](https://covid19rankings.jmorbegoso.com).
