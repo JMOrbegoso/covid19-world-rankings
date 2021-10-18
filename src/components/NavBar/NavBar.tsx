@@ -2,7 +2,7 @@ import React from 'react';
 import './NavBar.css';
 
 const navigationOptions = [
-	{ name: 'COVID-19 World Rankings', href: '/' },
+	{ name: 'Home', href: '/' },
 	{ name: 'Continents', href: '/continents' },
 	{ name: 'Countries', href: '/countries' },
 ];
@@ -17,6 +17,10 @@ export function NavBar(): JSX.Element {
 	return (
 		<nav>
 			<ul>
+				<li className="navbar-title">
+					<a href="/">{'COVID-19 World Rankings'}</a>
+				</li>
+
 				{navigationOptions.map((option) => (
 					<li key={option.name}>
 						<a href={option.href}>{option.name}</a>
