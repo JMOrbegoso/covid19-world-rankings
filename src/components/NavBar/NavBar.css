@@ -11,12 +11,16 @@ nav ul {
 	overflow: hidden;
 }
 
+nav ul .navbar-title {
+	display: none;
+}
+
 nav ul li {
 	display: inline-block;
 	font-weight: 600;
 	color: white;
 	text-align: center;
-	padding: 14px 10px;
+	padding: 14px 6px;
 }
 
 nav ul li:hover {
@@ -66,19 +70,43 @@ nav ul li.dropdown {
 }
 
 @media (min-width: 640px) {
+	nav ul .navbar-title {
+		display: inline;
+	}
+
 	nav ul li a {
-		padding: 14px 12px;
+		padding: 14px 10px;
+	}
+
+	nav ul li.dropdown {
+		margin-right: 8px;
 	}
 }
 
 @media (min-width: 768px) {
+	nav ul .navbar-title {
+		display: inline;
+	}
+
 	nav ul li a {
 		padding: 14px 14px;
+	}
+
+	nav ul li.dropdown {
+		margin-right: 12px;
 	}
 }
 
 @media (min-width: 1024px) {
+	nav ul .navbar-title {
+		display: inline;
+	}
+
 	nav ul li a {
-		padding: 14px 16px;
+		padding: 14px 18px;
+	}
+
+	nav ul li.dropdown {
+		margin-right: 16px;
 	}
 }
