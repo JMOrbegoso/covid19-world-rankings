@@ -1,0 +1,17 @@
+.line-chart-container {
+	border: 2px solid;
+	border-radius: 16px;
+	border-color: gray;
+	margin: 2px;
+}
+
+.line-chart-title {
+	font-size: large;
+	text-align: center;
+	font-weight: bolder;
+	text-align: center;
+}
+
+.line-chart {
+	height: 300px;
+}

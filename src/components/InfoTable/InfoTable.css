@@ -1,0 +1,21 @@
+.infotable {
+	width: 100%;
+	table-layout: auto;
+}
+
+.infotable tbody tr {
+	background-color: lightgray;
+}
+
+.infotable tbody tr:nth-child(even) {
+	background-color: silver;
+}
+
+.infotable tbody tr td {
+	text-align: start;
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	border: 1px solid white;
+}

@@ -1,0 +1,21 @@
+.app {
+	position: absolute;
+	display: flex;
+	flex-flow: column;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}
+
+.app-navbar {
+	flex-grow: 0;
+}
+
+.app-content {
+	flex-grow: 1;
+	margin-top: 48px;
+}
+
+.app-footer {
+	flex-grow: 0;
+}
