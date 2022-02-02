@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { RouteComponentProps } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Country } from '../../entities';
 import { getCountry, getCountryHistory } from '../../services';
 import {
@@ -12,18 +12,18 @@ import {
 } from '../../components';
 import './CountryPage.css';
 
-type TParams = { countryName: string };
-
-export function CountryPage({
-	match,
-}: RouteComponentProps<TParams>): JSX.Element {
-	const countryName = match.params.countryName;
+export function CountryPage(): JSX.Element {
+	const params = useParams();
+	const countryName = params.countryName;
 
 	const [country, setCountry] = useState<Country>();
 	const [countryHistoryChartData, setCountryHistoryChartData] =
 		useState<LineChartData>();
 
 	useEffect(() => {
+		if (!countryName) {
+			return;
+		}
 		getCountry(countryName).then((country) => {
 			setCountry(country);
 		});
