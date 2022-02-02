@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {
 	Footer,
 	MainPage,
@@ -20,21 +20,16 @@ export function App(): JSX.Element {
 				</div>
 
 				<div className="app-content">
-					<Switch>
-						<Route exact path="/" component={MainPage} />
-						<Route exact path="/continents/" component={ContinentsPage} />
+					<Routes>
+						<Route path="/" element={<MainPage />} />
+						<Route path="/continents/" element={<ContinentsPage />} />
 						<Route
-							exact
 							path="/continents/:continentName"
-							component={ContinentPage}
+							element={<ContinentPage />}
 						/>
-						<Route exact path="/countries/" component={CountriesPage} />
-						<Route
-							exact
-							path="/countries/:countryName"
-							component={CountryPage}
-						/>
-					</Switch>
+						<Route path="/countries/" element={<CountriesPage />} />
+						<Route path="/countries/:countryName" element={<CountryPage />} />
+					</Routes>
 				</div>
 
 				<div className="app-footer">
