@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { RouteComponentProps } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Continent } from '../../entities';
 import { getContinent, getCountries } from '../../services';
 import {
@@ -13,12 +13,9 @@ import {
 } from '../../components';
 import './ContinentPage.css';
 
-type TParams = { continentName: string };
-
-export function ContinentPage({
-	match,
-}: RouteComponentProps<TParams>): JSX.Element {
-	const continentName = match.params.continentName;
+export function ContinentPage(): JSX.Element {
+	const params = useParams();
+	const continentName = params.continentName;
 	const rankingPositions = 10;
 
 	const [continent, setContinent] = useState<Continent>();
@@ -30,6 +27,9 @@ export function ContinentPage({
 		useState<HorizontalBarChartData>();
 
 	useEffect(() => {
+		if (!continentName) {
+			return;
+		}
 		getContinent(continentName).then((continent) => {
 			setContinent(continent);
 
