@@ -1,7 +1,26 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import type * as Chart from 'chart.js';
+import {
+	Chart as ChartJS,
+	ChartData,
+	ChartOptions,
+	CategoryScale,
+	LinearScale,
+	BarElement,
+	Title,
+	Tooltip,
+	Legend,
+} from 'chart.js';
 import './HorizontalBarChart.css';
+
+ChartJS.register(
+	CategoryScale,
+	LinearScale,
+	BarElement,
+	Title,
+	Tooltip,
+	Legend,
+);
 
 type Props = {
 	title: string;
@@ -17,7 +36,7 @@ export type HorizontalBarChartData = {
 
 function convertToChartJsData(
 	chartData: HorizontalBarChartData,
-): Chart.ChartData {
+): ChartData<'bar', number[], string> {
 	return {
 		labels: chartData.labels,
 		datasets: [
@@ -30,7 +49,7 @@ function convertToChartJsData(
 	};
 }
 
-const options: Chart.ChartOptions = {
+const options: ChartOptions<'bar'> = {
 	indexAxis: 'y',
 	elements: {
 		bar: {
