@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Continent } from '../../entities';
-import { getContinents } from '../../services';
-import { LoadingPage, NavButtonsGroup, PageHeader } from '../../components';
+import { ApiResponse, getContinents } from '../../services';
+import {
+	LoadingPage,
+	NavButtonsGroup,
+	PageHeader,
+	PageNotFound,
+} from '../../components';
 import './CountriesPage.css';
 
 export function CountriesPage(): JSX.Element {
-	const [continents, setContinents] = useState<Continent[]>([]);
+	const [continents, setContinents] = useState<ApiResponse<Continent[]>>();
 
 	useEffect(() => {
 		getContinents().then((continents) => {
@@ -15,23 +20,27 @@ export function CountriesPage(): JSX.Element {
 	}, []);
 
 	return continents ? (
-		<div className="page">
-			<Helmet>
-				<title>COVID-19 Rankings | Countries</title>
-			</Helmet>
+		continents.data ? (
+			<div className="page">
+				<Helmet>
+					<title>COVID-19 Rankings | Countries</title>
+				</Helmet>
 
-			<PageHeader title="Countries" />
+				<PageHeader title="Countries" />
 
-			<section id="countries">
-				<NavButtonsGroup
-					relativeUrl="countries"
-					keys={continents
-						.map((c) => c.getCountries)
-						.flatMap((c) => c)
-						.sort((c1, c2) => (c1 > c2 ? 1 : -1))}
-				/>
-			</section>
-		</div>
+				<section id="countries">
+					<NavButtonsGroup
+						relativeUrl="countries"
+						keys={continents.data
+							.map((c) => c.getCountries)
+							.flatMap((c) => c)
+							.sort((c1, c2) => (c1 > c2 ? 1 : -1))}
+					/>
+				</section>
+			</div>
+		) : (
+			<PageNotFound />
+		)
 	) : (
 		<LoadingPage />
 	);

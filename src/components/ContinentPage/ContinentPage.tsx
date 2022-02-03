@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useParams } from 'react-router-dom';
 import { Continent } from '../../entities';
-import { getContinent, getCountries } from '../../services';
+import { ApiResponse, getContinent, getCountries } from '../../services';
 import {
 	HorizontalBarChartData,
 	HorizontalBarChart,
@@ -10,6 +10,7 @@ import {
 	LoadingPage,
 	NavButtonsGroup,
 	PageHeader,
+	PageNotFound,
 } from '../../components';
 import './ContinentPage.css';
 
@@ -18,7 +19,7 @@ export function ContinentPage(): JSX.Element {
 	const continentName = params.continentName;
 	const rankingPositions = 10;
 
-	const [continent, setContinent] = useState<Continent>();
+	const [continent, setContinent] = useState<ApiResponse<Continent>>();
 	const [casesChartData, setCasesChartData] =
 		useState<HorizontalBarChartData>();
 	const [deathsChartData, setDeathsChartData] =
@@ -33,13 +34,21 @@ export function ContinentPage(): JSX.Element {
 		getContinent(continentName).then((continent) => {
 			setContinent(continent);
 
-			getCountries(continent.getCountries).then((countries) => {
+			if (!continent.data) {
+				return;
+			}
+
+			getCountries(continent.data.getCountries).then((countries) => {
+				if (!countries.data) {
+					return;
+				}
+
 				setCasesChartData({
-					labels: countries
+					labels: countries.data
 						.sort((c1, c2) => (c1.getCases > c2.getCases ? -1 : 1))
 						.slice(0, rankingPositions)
 						.map((c) => c.getName),
-					datasets: countries
+					datasets: countries.data
 						.sort((c1, c2) => (c1.getCases > c2.getCases ? -1 : 1))
 						.slice(0, rankingPositions)
 						.map((c) => c.getCases),
@@ -48,11 +57,11 @@ export function ContinentPage(): JSX.Element {
 				});
 
 				setDeathsChartData({
-					labels: countries
+					labels: countries.data
 						.sort((c1, c2) => (c1.getDeaths > c2.getDeaths ? -1 : 1))
 						.slice(0, rankingPositions)
 						.map((c) => c.getName),
-					datasets: countries
+					datasets: countries.data
 						.sort((c1, c2) => (c1.getDeaths > c2.getDeaths ? -1 : 1))
 						.slice(0, rankingPositions)
 						.map((c) => c.getDeaths),
@@ -61,11 +70,11 @@ export function ContinentPage(): JSX.Element {
 				});
 
 				setTestsChartData({
-					labels: countries
+					labels: countries.data
 						.sort((c1, c2) => (c1.getTests > c2.getTests ? -1 : 1))
 						.slice(0, rankingPositions)
 						.map((c) => c.getName),
-					datasets: countries
+					datasets: countries.data
 						.sort((c1, c2) => (c1.getTests > c2.getTests ? -1 : 1))
 						.slice(0, rankingPositions)
 						.map((c) => c.getTests),
@@ -77,74 +86,78 @@ export function ContinentPage(): JSX.Element {
 	}, [continentName]);
 
 	return continent ? (
-		<div className="page">
-			<Helmet>
-				<title>{`COVID-19 Rankings | ${continent.getName}`}</title>
-			</Helmet>
+		continent.data ? (
+			<div className="page">
+				<Helmet>
+					<title>{`COVID-19 Rankings | ${continent.data.getName}`}</title>
+				</Helmet>
 
-			<div className="page-section">
-				<PageHeader title={continent.getName} />
-			</div>
+				<div className="page-section">
+					<PageHeader title={continent.data.getName} />
+				</div>
 
-			<div className="page-section">
-				<InfoTable
-					data={[
-						{
-							property: 'Population (Inhabitants)',
-							value: continent.getPopulation,
-						},
-						{ property: 'Total cases', value: continent.getCases },
-						{ property: 'Total deaths', value: continent.getDeaths },
-						{ property: 'Total tests', value: continent.getTests },
-						{
-							property: 'Cases per 1 million inhabitants',
-							value: continent.getCasesPerOneMillion,
-						},
-						{
-							property: 'Deaths per 1 million inhabitants',
-							value: continent.getDeathsPerOneMillion,
-						},
-						{
-							property: 'Tests per 1 million inhabitants',
-							value: continent.getTestsPerOneMillion,
-						},
-					]}
-				/>
-
-				<div className="page-section"></div>
-				{casesChartData && (
-					<HorizontalBarChart
-						title="Countries with the highest number of COVID-19 infected"
-						chartData={casesChartData}
+				<div className="page-section">
+					<InfoTable
+						data={[
+							{
+								property: 'Population (Inhabitants)',
+								value: continent.data.getPopulation,
+							},
+							{ property: 'Total cases', value: continent.data.getCases },
+							{ property: 'Total deaths', value: continent.data.getDeaths },
+							{ property: 'Total tests', value: continent.data.getTests },
+							{
+								property: 'Cases per 1 million inhabitants',
+								value: continent.data.getCasesPerOneMillion,
+							},
+							{
+								property: 'Deaths per 1 million inhabitants',
+								value: continent.data.getDeathsPerOneMillion,
+							},
+							{
+								property: 'Tests per 1 million inhabitants',
+								value: continent.data.getTestsPerOneMillion,
+							},
+						]}
 					/>
-				)}
-			</div>
 
-			<div className="page-section">
-				{deathsChartData && (
-					<HorizontalBarChart
-						title="Countries with the highest number of COVID-19 deaths"
-						chartData={deathsChartData}
+					<div className="page-section"></div>
+					{casesChartData && (
+						<HorizontalBarChart
+							title="Countries with the highest number of COVID-19 infected"
+							chartData={casesChartData}
+						/>
+					)}
+				</div>
+
+				<div className="page-section">
+					{deathsChartData && (
+						<HorizontalBarChart
+							title="Countries with the highest number of COVID-19 deaths"
+							chartData={deathsChartData}
+						/>
+					)}
+				</div>
+
+				<div className="page-section">
+					{testsChartData && (
+						<HorizontalBarChart
+							title="Countries with the highest number of COVID-19 tests"
+							chartData={testsChartData}
+						/>
+					)}
+				</div>
+
+				<div className="page-section">
+					<NavButtonsGroup
+						relativeUrl="countries"
+						keys={continent.data.getCountries}
 					/>
-				)}
+				</div>
 			</div>
-
-			<div className="page-section">
-				{testsChartData && (
-					<HorizontalBarChart
-						title="Countries with the highest number of COVID-19 tests"
-						chartData={testsChartData}
-					/>
-				)}
-			</div>
-
-			<div className="page-section">
-				<NavButtonsGroup
-					relativeUrl="countries"
-					keys={continent.getCountries}
-				/>
-			</div>
-		</div>
+		) : (
+			<PageNotFound />
+		)
 	) : (
 		<LoadingPage />
 	);
