@@ -1,7 +1,28 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import type * as Chart from 'chart.js';
+import {
+	Chart as ChartJS,
+	ChartData,
+	ChartOptions,
+	CategoryScale,
+	LinearScale,
+	PointElement,
+	LineElement,
+	Title,
+	Tooltip,
+	Legend,
+} from 'chart.js';
 import './LineChart.css';
+
+ChartJS.register(
+	CategoryScale,
+	LinearScale,
+	PointElement,
+	LineElement,
+	Title,
+	Tooltip,
+	Legend,
+);
 
 type Props = {
 	title: string;
@@ -17,7 +38,9 @@ export type LineChartData = {
 	}[];
 };
 
-function convertToChartJsData(chartData: LineChartData): Chart.ChartData {
+function convertToChartJsData(
+	chartData: LineChartData,
+): ChartData<'line', number[], string> {
 	return {
 		labels: chartData.labels,
 		datasets: chartData.datasets.map((dataset) => {
@@ -32,7 +55,7 @@ function convertToChartJsData(chartData: LineChartData): Chart.ChartData {
 	};
 }
 
-const options: Chart.ChartOptions = {
+const options: ChartOptions<'line'> = {
 	indexAxis: 'x',
 	responsive: true,
 	animation: { duration: 3000 },
