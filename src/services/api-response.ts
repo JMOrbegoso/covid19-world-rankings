@@ -1,14 +1,15 @@
 export class ApiResponse<T> {
-	private constructor(
-		public readonly isValid: boolean,
-		public readonly data?: T,
-	) {}
+	private constructor(public readonly data?: T) {}
 
 	public static create<T>(data: T): ApiResponse<T> {
-		return new ApiResponse<T>(true, data);
+		return new ApiResponse<T>(data);
 	}
 
 	public static createInvalid<T>(): ApiResponse<T> {
-		return new ApiResponse<T>(false, undefined);
+		return new ApiResponse<T>(undefined);
+	}
+
+	public get isValid(): boolean {
+		return !!this.data;
 	}
 }
