@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '..';
+import { Searcher } from '../Searcher/Searcher';
 import './Hero.css';
 
 export function Hero(): JSX.Element {
@@ -13,6 +14,8 @@ export function Hero(): JSX.Element {
 				<h3 className="hero-description">
 					Compare the countries status about the COVID-19
 				</h3>
+
+				<Searcher />
 
 				<div className="hero-buttons">
 					<a href="/continents">

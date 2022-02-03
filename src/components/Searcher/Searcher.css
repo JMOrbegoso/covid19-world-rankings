@@ -1,0 +1,23 @@
+.find-label {
+	font-size: large;
+	font-weight: bold;
+}
+
+.find-input {
+	margin: 8px;
+	padding: 12px;
+	font-size: large;
+	border-radius: 6px;
+}
+
+.find-submit {
+	margin: 8px;
+	padding: 12px;
+	font-size: large;
+	border-radius: 6px;
+	background-color: steelblue;
+}
+
+.find-submit:hover {
+	background-color: gray;
+}
