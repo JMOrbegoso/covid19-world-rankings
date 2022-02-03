@@ -29,7 +29,7 @@ export function CountryPage(): JSX.Element {
 			setCountry(country);
 		});
 		getCountryHistory(countryName).then((countryHistory) => {
-			if (!countryHistory.isValid || !countryHistory.data) {
+			if (!countryHistory.data) {
 				return;
 			}
 
@@ -58,7 +58,7 @@ export function CountryPage(): JSX.Element {
 	}, [countryName]);
 
 	return country ? (
-		country.isValid && country.data ? (
+		country.data ? (
 			<div className="page">
 				<Helmet>
 					<title>{`COVID-19 Rankings | ${country.data.getName}`}</title>

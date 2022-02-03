@@ -10,7 +10,6 @@ describe('api-response', () => {
 
 		// Assert
 		expect(result).toBeTruthy();
-		expect(result.isValid).toBeTruthy();
 		expect(result.data).toBeTruthy();
 		expect(result.data).toBe('data');
 	});
@@ -23,7 +22,6 @@ describe('api-response', () => {
 
 		// Assert
 		expect(result).toBeTruthy();
-		expect(result.isValid).toBeFalsy();
 		expect(result.data).toBeFalsy();
 	});
 });

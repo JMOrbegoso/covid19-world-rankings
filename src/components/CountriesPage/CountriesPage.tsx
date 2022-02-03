@@ -20,7 +20,7 @@ export function CountriesPage(): JSX.Element {
 	}, []);
 
 	return continents ? (
-		continents.isValid && continents.data ? (
+		continents.data ? (
 			<div className="page">
 				<Helmet>
 					<title>COVID-19 Rankings | Countries</title>

@@ -8,8 +8,4 @@ export class ApiResponse<T> {
 	public static createInvalid<T>(): ApiResponse<T> {
 		return new ApiResponse<T>(undefined);
 	}
-
-	public get isValid(): boolean {
-		return !!this.data;
-	}
 }

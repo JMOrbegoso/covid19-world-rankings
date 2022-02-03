@@ -34,12 +34,12 @@ export function ContinentPage(): JSX.Element {
 		getContinent(continentName).then((continent) => {
 			setContinent(continent);
 
-			if (!continent.isValid || !continent.data) {
+			if (!continent.data) {
 				return;
 			}
 
 			getCountries(continent.data.getCountries).then((countries) => {
-				if (!countries.isValid || !countries.data) {
+				if (!countries.data) {
 					return;
 				}
 
@@ -86,7 +86,7 @@ export function ContinentPage(): JSX.Element {
 	}, [continentName]);
 
 	return continent ? (
-		continent.isValid && continent.data ? (
+		continent.data ? (
 			<div className="page">
 				<Helmet>
 					<title>{`COVID-19 Rankings | ${continent.data.getName}`}</title>
